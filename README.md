@@ -21,9 +21,9 @@ The illustration is decorative: waxing is illuminated on the right. It does not 
 | --- | --- |
 | Windows | Portable executable built; desktop startup, date selection, return-to-now and credits smoke checks passed. |
 | Linux | Shared desktop source ready; requires Python 3.10+ and Tkinter. No native Linux binary built or verified yet. |
-| Android | APK build and lint passed (0 errors, 14 warnings); release signing and phone testing pending. Android 7+, arm64-v8a and x86_64. |
+| Android | APK build and lint passed (0 errors, 14 warnings); release APK signed and signature verified; phone testing pending. Android 7+, arm64-v8a and x86_64. |
 
-No downloadable release is published yet. Build outputs and signing keys are excluded from source control.
+No GitHub Release is published yet. The signed APK is available in the local delivery. Build outputs and signing keys are excluded from source control.
 
 ## Run the desktop app
 
@@ -45,7 +45,7 @@ Use JDK 17, Gradle 8.7, Android SDK platform 34/build-tools 34.0.0, and Python 3
 gradle :app:assembleDebug :app:lintDebug
 ```
 
-Debug output is intentionally unsigned. Release keys must be stored privately, backed up, and never committed. Signing credentials are not part of this repository. Android builds may download build dependencies; the installed app remains offline.
+Debug output is intentionally unsigned. Release keys must be stored privately, backed up, and never committed. Signing credentials are stored as encrypted GitHub Actions secrets, not repository files. Use the **Signed Android release** workflow from the Actions tab to build with the permanent release identity. This workflow is prepared but has not yet been run on GitHub. Android builds may download build dependencies; the installed app remains offline.
 
 ## Verify calculations
 
@@ -67,3 +67,5 @@ Moonlight is licensed under **GPL-3.0**; see [LICENSE](LICENSE). Third-party com
 See [CREDITS.txt](CREDITS.txt), [Astronomy Engine notice](app/src/main/python/ASTRONOMY-NOTICE.md), and [Python license](PYTHON-LICENSE.txt). Platform runtime distributions retain their bundled license notices.
 
 The official Moonlight app is free, ad-free and tracking-free. GPL preserves software freedoms; it does not prohibit commercial redistribution or require forks to follow this product promise.
+
+Release certificate SHA-256: `c89375ffb63f4c9f155a960c5be00d53ccbee3087bf351c9c5c29d76ae21df34`.
