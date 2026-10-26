@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+.gradle/
+.gradle-home/
+.android-user/
+local.properties
+app/build/
+app/build-arm64/
+build/
+dist/
+*.spec
+*.apk
+*.aab
+*.jks
+*.keystore
+signing.properties
+.env

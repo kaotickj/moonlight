@@ -1,0 +1,36 @@
+plugins {
+    id 'com.android.application'
+    id 'com.chaquo.python'
+}
+def arm64Only = providers.gradleProperty('moonlightArm64Only').isPresent()
+if (arm64Only) {
+    layout.buildDirectory = file('build-arm64')
+}
+android {
+    namespace 'app.jay.moonlight'
+    compileSdk 34
+    buildToolsVersion '34.0.0'
+    defaultConfig {
+        applicationId 'app.jay.moonlight'
+        minSdk 24
+        targetSdk 34
+        versionCode 2
+        versionName '0.2.0'
+        ndk {
+            if (arm64Only) { abiFilters 'arm64-v8a' }
+            else { abiFilters 'arm64-v8a', 'x86_64' }
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    // Never read the user's existing debug/release keystores.
+    buildTypes { debug { signingConfig null } }
+}
+chaquopy {
+    defaultConfig {
+        version = '3.12'
+        buildPython 'python'
+    }
+}
