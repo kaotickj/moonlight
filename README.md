@@ -1,6 +1,6 @@
 # Moonlight
 
-Your window to the night. An offline moon phase app for **Windows, Linux and Android**, with a starry backdrop and a prominent illustration of the Moon in its calculated phase.
+Created by **Kaotick Jay**. Your window to the night. An offline moon phase app for **Windows, Linux and Android**, with a starry backdrop and a prominent illustration of the Moon in its calculated phase.
 
 **Free means free.** No ads, telemetry, tracking, accounts, subscriptions or email collection. No data is collected, sold or shared. Moon calculations happen entirely on your device; Android requests no permissions. No runtime downloads or network services.
 
@@ -8,14 +8,14 @@ Your window to the night. An offline moon phase app for **Windows, Linux and And
 
 - Current phase and illuminated percentage, refreshed each minute in Now mode.
 - Explore dates from 2001 through 2100 at local noon.
-- Upcoming new and full moons, with local times and each event’s UTC offset.
+- Upcoming new and full moons, with local times and each eventâ€™s UTC offset.
 - Tools for returning to now, choosing a date and copying details to the clipboard.
 - About, privacy, credits and licenses, and a guide to reading the Moon.
 - Procedural night sky and cratered Moon artwork; no remote image assets.
 
 The illustration is decorative: waxing is illuminated on the right. It does not reproduce your local sky orientation, libration or eclipse darkening. Phase names are nearest-eighth categories, not exact event instants.
 
-## Version 0.2.0 status
+## Version 0.2.1 status
 
 | Platform | Status |
 | --- | --- |
@@ -33,7 +33,7 @@ Install Python 3.10 or later with Tkinter, then run:
 python desktop.py
 ```
 
-On Linux the command is usually `python3 desktop.py`; install your distribution’s Tkinter package if needed (for example `python3-tk` on Debian/Ubuntu). No third-party Python packages are needed to run the app. Desktop date entry uses `YYYY-MM-DD`.
+On Linux the command is usually `python3 desktop.py`; install your distributionâ€™s Tkinter package if needed (for example `python3-tk` on Debian/Ubuntu). No third-party Python packages are needed to run the app. Desktop date entry uses `YYYY-MM-DD`.
 
 For a bundled Windows or Linux build, run PyInstaller on that operating system, including `app/src/main/python` at the same relative path and `CREDITS.txt` and `PYTHON-LICENSE.txt` at the bundle root. Native Linux packaging remains to be verified.
 
@@ -59,13 +59,23 @@ All 10 regression tests passed for this patch. The original offline astronomy en
 
 Moonlight is licensed under **GPL-3.0**; see [LICENSE](LICENSE). Third-party components retain their own licenses and notices.
 
-- **Astronomy Engine 2.1.19**, Don Cross — MIT; original copyright and license retained in `astronomy.py`.
+- **Astronomy Engine 2.1.19**, Don Cross â€” MIT; original copyright and license retained in `astronomy.py`.
 - Reference tables: **Fred Espenak, NASA/GSFC**; used for regression tests, not runtime requests.
 - Android Python bridge: **Chaquopy** contributors; Python: **Python Software Foundation** and contributors.
-- Desktop UI: **Tcl/Tk** via Python’s Tkinter.
+- Desktop UI: **Tcl/Tk** via Pythonâ€™s Tkinter.
 
 See [CREDITS.txt](CREDITS.txt), [Astronomy Engine notice](app/src/main/python/ASTRONOMY-NOTICE.md), and [Python license](PYTHON-LICENSE.txt). Platform runtime distributions retain their bundled license notices.
 
 The official Moonlight app is free, ad-free and tracking-free. GPL preserves software freedoms; it does not prohibit commercial redistribution or require forks to follow this product promise.
 
 Release certificate SHA-256: `c89375ffb63f4c9f155a960c5be00d53ccbee3087bf351c9c5c29d76ae21df34`.
+
+## Optional support
+
+Moonlight stays free. Donations unlock nothing and are never required.
+
+- [GitHub Sponsors](https://github.com/sponsors/kaotickj)
+- [Patreon](https://www.patreon.com/KaotickJay)
+- [PayPal](https://paypal.me/kaotickj)
+
+These are also available in Explore & About. Opening a support link launches your browser; external services have their own privacy policies. Funding configuration is copied from Kaotick Jay’s Python Music Player.

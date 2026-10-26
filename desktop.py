@@ -7,6 +7,8 @@ from pathlib import Path
 import queue
 import random
 import sys
+import re
+import webbrowser
 import tkinter as tk
 from tkinter import ttk, messagebox
 
@@ -88,14 +90,15 @@ class Moonlight:
         bar.add_cascade(label='Tools', menu=tools)
         help_menu = tk.Menu(bar, tearoff=False)
         help_menu.add_command(label='About Moonlight', command=lambda: self.info('About Moonlight',
-            'Moonlight 0.2.0\nCreated for Jay.\n\nA free, offline window to the Moon. Current phase, illumination, date exploration and upcoming new and full moons.\n\nFree means free. No ads, subscriptions, accounts or tradeoffs. See Credits & licenses for attribution.'))
+            'Moonlight 0.2.1\nCreated by Kaotick Jay.\n\nA free, offline window to the Moon. Current phase, illumination, date exploration and upcoming new and full moons.\n\nFree means free. No ads, subscriptions, accounts or tradeoffs. See Credits & licenses for attribution.\n\nOptional support:\nhttps://github.com/sponsors/kaotickj\nhttps://www.patreon.com/KaotickJay\nhttps://paypal.me/kaotickj\n\nSupport links open your browser; third-party privacy policies apply.'))
         help_menu.add_command(label='Privacy — free means free', command=lambda: self.info('Free means free',
             'No advertising. No telemetry. No tracking. No account or email address required. Nothing collected, sold or shared.\n\nAll calculations happen on your device. No network calls, location access or background services. Dates use your device clock and time zone.\n\nCopy details writes only to your clipboard when you choose it. The app does not read your clipboard.'))
         help_menu.add_command(label='Credits & licenses', command=lambda: self.info('Credits & licenses',
             (BASE / 'CREDITS.txt').read_text(encoding='utf-8')))
         help_menu.add_command(label='Reading the Moon', command=lambda: self.info('Reading the Moon',
             'Illumination is the sunlit fraction of the lunar disk. Phase names describe the nearest of eight sectors; a Full Moon label does not mean the exact event instant.\n\nThe cratered illustration is decorative: waxing is lit on the right. It does not show your local sky orientation, libration or eclipse darkening.\n\nDates show local noon. Now updates each minute. Event times use the device time zone at each event. Supported dates: 2001–2100. Selected NASA reference events agree within two minutes; this is not a guarantee across the full range.'))
-        bar.add_cascade(label='Help', menu=help_menu)
+        help_menu.add_command(label='Support Kaotick Jay (optional)', command=lambda: self.info('Support Kaotick Jay', 'Optional support for Kaotick Jay. Moonlight stays completely free; donations unlock nothing.\n\nGitHub Sponsors: https://github.com/sponsors/kaotickj\nPatreon: https://www.patreon.com/KaotickJay\nPayPal: https://paypal.me/kaotickj\n\nLinks open your browser. Those services have their own privacy policies.'))
+        bar.add_cascade(label='Explore & About', menu=help_menu)
         self.root.config(menu=bar)
         self.root.bind('<Control-n>', lambda e: self.now())
         self.root.bind('<Control-c>', self.copy_shortcut)
@@ -120,6 +123,11 @@ class Moonlight:
         scrollbar.pack(side='right', fill='y')
         body.pack(fill='both', expand=True)
         body.insert('1.0', text)
+        for index, match in enumerate(re.finditer(r'https://[^\s]+', text)):
+            tag = 'link'+str(index)
+            body.tag_add(tag, '1.0+'+str(match.start())+'c', '1.0+'+str(match.end())+'c')
+            body.tag_config(tag, foreground=GOLD, underline=True)
+            body.tag_bind(tag, '<Button-1>', lambda event, url=match.group(): webbrowser.open(url))
         body.configure(state='disabled')
         ttk.Button(window, text='Close', command=window.destroy).pack(pady=(0, 16))
 

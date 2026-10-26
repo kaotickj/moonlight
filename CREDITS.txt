@@ -1,5 +1,5 @@
-MOONLIGHT 0.2.0
-Created for Jay. Night-sky and crater illustrations generated procedurally in the app; no external image assets.
+MOONLIGHT 0.2.1
+Created by Kaotick Jay. Night-sky and crater illustrations generated procedurally in the app; no external image assets.
 
 Astronomy Engine v2.1.19 — Don Cross
 https://github.com/cosinekitty/astronomy

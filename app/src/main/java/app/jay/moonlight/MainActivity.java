@@ -135,10 +135,13 @@ public class MainActivity extends Activity {
         menu.add(0, 5, 4, "Privacy — free means free");
         menu.add(0, 6, 5, "Credits & licenses");
         menu.add(0, 7, 6, "Reading the Moon");
+        menu.add(0, 8, 7, "Support Kaotick Jay (optional)");
     }
     private void info(String title, String message) {
         TextView content = new TextView(this);
         content.setText(message); content.setTextIsSelectable(true);
+        android.text.util.Linkify.addLinks(content, android.text.util.Linkify.WEB_URLS);
+        content.setMovementMethod(android.text.method.LinkMovementMethod.getInstance());
         content.setTextSize(16); content.setPadding(dp(24), dp(16), dp(24), dp(16));
         ScrollView scroll = new ScrollView(this); scroll.addView(content);
         new AlertDialog.Builder(this).setTitle(title).setView(scroll).setPositiveButton("Close", null).show();
@@ -159,8 +162,8 @@ public class MainActivity extends Activity {
                 ((ClipboardManager)getSystemService(CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText("Moonlight",
                     phase.getText()+"\n"+illumination.getText()+"\n"+instant.getText()+"\n\n"+events.getText()));
                 Toast.makeText(this,"Copied to your clipboard",Toast.LENGTH_SHORT).show(); break;
-            case 4: info("About Moonlight", "Moonlight 0.2.0\nCreated for Jay.\n\nA free, offline window to the Moon. Current phase, illumination, date exploration and upcoming new and full moons.\n\nFree means free. No ads, subscriptions, accounts or tradeoffs. See Credits & licenses for attribution."); break;
-            case 5: info("Free means free", "No advertising. No telemetry. No tracking. No account or email address required. Nothing collected, sold or shared.\n\nAll moon calculations happen on your device. This app requests no Android permissions and makes no network connections. Dates use your device clock and time zone; location is not accessed.\n\nCopy details only writes to your clipboard when you choose it. The app does not read your clipboard."); break;
+            case 4: info("About Moonlight", "Moonlight 0.2.1\nCreated by Kaotick Jay.\n\nA free, offline window to the Moon. Current phase, illumination, date exploration and upcoming new and full moons.\n\nFree means free. No ads, subscriptions, accounts or tradeoffs. See Credits & licenses for attribution.\n\nOptional support:\nhttps://github.com/sponsors/kaotickj\nhttps://www.patreon.com/KaotickJay\nhttps://paypal.me/kaotickj\n\nSupport links open your browser; third-party privacy policies apply."); break;
+            case 5: info("Free means free", "No advertising. No telemetry. No tracking. No account or email address required. Nothing collected, sold or shared.\n\nAll moon calculations happen on your device. This app requests no Android permissions and makes no network connections itself. Optional support links open external services in your browser only when you choose them. Dates use your device clock and time zone; location is not accessed.\n\nCopy details only writes to your clipboard when you choose it. The app does not read your clipboard."); break;
             case 6:
                 String licenses;
                 try {
@@ -172,6 +175,7 @@ public class MainActivity extends Activity {
                 } catch(Exception e) { licenses = "Credits could not be loaded."; }
                 info("Credits & licenses", licenses); break;
             case 7: info("Reading the Moon", "Illumination is the sunlit fraction of the lunar disk. Phase names describe the nearest of eight phase sectors; a Full Moon label does not mean the exact event instant.\n\nThe cratered illustration is decorative: waxing is lit on the right. It does not show your local sky orientation, lunar libration or eclipse darkening.\n\nCalendar dates show local noon. Now refreshes each minute. Event times use your device time zone and the offset at each event.\n\nSupported dates: 2001–2100. Astronomy Engine calculates event times numerically. Selected NASA reference events agree within two minutes; this is not a guarantee across the full range."); break;
+            case 8: info("Support Kaotick Jay", "Optional support for Kaotick Jay. Moonlight stays completely free; donations unlock nothing.\n\nGitHub Sponsors: https://github.com/sponsors/kaotickj\nPatreon: https://www.patreon.com/KaotickJay\nPayPal: https://paypal.me/kaotickj\n\nLinks open your browser. Those services have their own privacy policies."); break;
             default: return false;
         }
         return true;
